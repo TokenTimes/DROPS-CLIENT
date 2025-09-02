@@ -1,0 +1,966 @@
+/* Mobile Responsive CSS for Polymarket Scanner */
+
+/* Import IBM Plex Mono font */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+/* Dark Mode Global Styles */
+* {
+  box-sizing: border-box;
+  font-family: "IBM Plex Mono", "Courier New", monospace !important;
+}
+
+/* App header with logo - desktop styles */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 12px;
+}
+
+.app-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+  font-family: "IBM Plex Mono", "Courier New", monospace !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
+  font-family: "IBM Plex Mono", "Courier New", monospace !important;
+}
+
+/* Dark Mode Base Styles */
+.main-container {
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
+}
+
+/* Dark Mode Components */
+.tab-button {
+  background-color: #2a2a2a !important;
+  color: #ffffff !important;
+  border: 1px solid #444 !important;
+}
+
+.tab-button.active {
+  background-color: rgba(222, 255, 78, 59) !important;
+  color: black !important;
+}
+
+.controls-section {
+  background-color: #2a2a2a !important;
+  border: 1px solid #444 !important;
+  border-radius: 6px !important;
+  padding: 16px !important;
+}
+
+.control-input {
+  background-color: #333 !important;
+  color: #ffffff !important;
+  border: 1px solid #555 !important;
+}
+
+.control-input:focus {
+  border-color: #007bff !important;
+  outline: none !important;
+}
+
+.status-bar {
+  background-color: #2a2a2a !important;
+  color: #ffffff !important;
+  border: 1px solid #444 !important;
+}
+
+.table-wrapper {
+  background-color: #1a1a1a !important;
+  border: 1px solid #444 !important;
+}
+
+table {
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
+  font-family: "IBM Plex Mono", "Courier New", monospace !important;
+}
+
+thead th {
+  background-color: #2a2a2a !important;
+  color: #ffffff !important;
+  border-bottom: 2px solid #444 !important;
+  font-family: "IBM Plex Mono", "Courier New", monospace !important;
+}
+
+tbody td {
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
+  border-bottom: 1px solid #333 !important;
+  font-family: "IBM Plex Mono", "Courier New", monospace !important;
+}
+
+tbody tr:hover {
+  background-color: #2a2a2a !important;
+}
+
+/* Smooth animation for table row transitions */
+tbody tr {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+tbody tr.selected {
+  border: 1px solid rgba(222, 255, 78, 0.2) !important;
+  border-radius: 4px !important;
+  background-color: rgba(222, 255, 78, 0.03) !important;
+}
+
+tbody tr.selected:hover {
+  background-color: rgba(222, 255, 78, 0.05) !important;
+}
+
+/* Smooth height transition for outcome allocation section */
+.outcome-allocation-container {
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  overflow: hidden !important;
+  will-change: max-height, opacity !important;
+  position: relative !important;
+}
+
+.outcome-allocation-container.expanded {
+  max-height: 1500px !important;
+  opacity: 1 !important;
+}
+
+.outcome-allocation-container.collapsed {
+  max-height: 40px !important;
+  opacity: 0.95 !important;
+}
+
+/* Ensure smooth content transitions */
+.outcome-allocation-container > * {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.outcome-allocation-container.collapsed > *:not(.outcome-preview) {
+  opacity: 0 !important;
+  transform: translateY(-10px) !important;
+  pointer-events: none !important;
+}
+
+.outcome-allocation-container.expanded > * {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  pointer-events: auto !important;
+}
+
+.outcome-preview {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Smooth content transitions */
+.outcome-content {
+  transition: opacity 0.2s ease !important;
+}
+
+.outcome-content.hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.outcome-content.visible {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Individual outcome item animations */
+.outcome-item {
+  transition: background-color 0.2s ease, border-color 0.2s ease !important;
+}
+
+.outcome-item:hover {
+  background-color: #333 !important;
+  border-color: rgba(222, 255, 78, 0.2) !important;
+}
+
+/* Outcome preview styling for unselected rows */
+.outcome-preview {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.outcome-preview span:hover {
+  opacity: 1 !important;
+  color: #ffffff !important;
+}
+
+/* Scale animation for selected rows */
+tbody tr.selected td {
+  position: relative !important;
+}
+
+/* Smooth transitions for mobile */
+@media (max-width: 768px) {
+  tbody tr.selected {
+    border: 1px solid rgba(222, 255, 78, 0.15) !important;
+    background-color: rgba(222, 255, 78, 0.02) !important;
+  }
+  
+  .outcome-allocation-container {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+  
+  .outcome-allocation-container.expanded {
+    max-height: 800px !important;
+  }
+  
+  .outcome-allocation-container.collapsed {
+    max-height: 35px !important;
+  }
+}
+
+.export-button {
+  background-color: rgb(220, 236, 78) !important;
+  color: #000000 !important;
+  border: none !important;
+  width: 100% !important;
+}
+
+.export-button:disabled {
+  background-color: #555 !important;
+  color: #999 !important;
+}
+
+.json-preview {
+  background-color: #1a1a1a !important;
+  border: 1px solid #444 !important;
+}
+
+.json-header {
+  background-color: #2a2a2a !important;
+  color: #ffffff !important;
+  border-bottom: 1px solid #444 !important;
+}
+
+.json-content {
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
+}
+
+.json-content pre {
+  color: #ffffff !important;
+  font-family: "omedium", Monaco, "Cascadia Code", "Roboto Mono", Consolas,
+    "Courier New", monospace !important;
+}
+
+input[type="checkbox"] {
+  accent-color: rgba(222, 255, 78, 59) !important;
+}
+
+button {
+  background-color: #2a2a2a !important;
+  color: #ffffff !important;
+  border: 1px solid #444 !important;
+  font-family: "IBM Plex Mono", "Courier New", monospace !important;
+}
+
+button:hover {
+  background-color: #3a3a3a !important;
+}
+
+button:active {
+  background-color: #007bff !important;
+}
+
+/* Info boxes and status displays */
+.info-box {
+  background-color: #2a2a2a !important;
+  color: #ffffff !important;
+  border: 1px solid #444 !important;
+}
+
+.select-all-box {
+  background-color: #2a2a2a !important;
+  color: #ffffff !important;
+  border: 1px solid #444 !important;
+}
+
+.showing-markets-box {
+  background-color: #2a2a2a !important;
+  color: #ffffff !important;
+  border: 1px solid #444 !important;
+}
+
+/* All input elements dark mode */
+input[type="text"],
+input[type="number"],
+input[type="search"],
+select,
+textarea {
+  background-color: #333 !important;
+  color: #ffffff !important;
+  border: 1px solid #555 !important;
+  border-radius: 4px !important;
+  font-family: "IBM Plex Mono", "Courier New", monospace !important;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #007bff !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25) !important;
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder,
+input[type="search"]::placeholder,
+textarea::placeholder {
+  color: #999 !important;
+}
+
+/* Select dropdown arrow styling */
+select {
+  appearance: none !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 8px center !important;
+  background-size: 16px !important;
+  padding-right: 32px !important;
+}
+
+/* Checkbox styling for dark mode */
+input[type="checkbox"] {
+  accent-color: rgba(222, 255, 78, 59) !important;
+  background-color: #333 !important;
+  border: 1px solid #555 !important;
+}
+
+/* Labels and text elements */
+label {
+  color: #ffffff !important;
+  font-family: "IBM Plex Mono", "Courier New", monospace !important;
+}
+
+/* Loading and error messages */
+.loading {
+  color: #ffffff !important;
+  background-color: #2a2a2a !important;
+  border: 1px solid #444 !important;
+  padding: 16px !important;
+  border-radius: 4px !important;
+}
+
+.error {
+  color: #ff6b6b !important;
+  background-color: #2a2a2a !important;
+  border: 1px solid #ff6b6b !important;
+  padding: 16px !important;
+  border-radius: 4px !important;
+}
+
+/* Base mobile styles */
+@media (max-width: 768px) {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+  }
+
+  /* Main container adjustments */
+  .main-container {
+    padding: 8px !important;
+    margin: 0 !important;
+    min-height: 100vh;
+  }
+
+  /* Header and title adjustments */
+  h1 {
+    font-size: 20px !important;
+    margin: 10px 0 !important;
+    text-align: center;
+    font-family: "IBM Plex Mono", "Courier New", monospace !important;
+  }
+
+  /* Tab interface mobile optimization */
+  .tab-container {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .tab-button {
+    flex: 1 1 auto !important;
+    min-width: 120px !important;
+    padding: 10px 8px !important;
+    font-size: 13px !important;
+    text-align: center !important;
+    border-radius: 6px !important;
+    white-space: nowrap !important;
+  }
+
+  /* Controls section mobile optimization */
+  .controls-section {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .control-group {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+  }
+
+  .control-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  .control-input {
+    flex: 1 1 auto !important;
+    min-width: 120px !important;
+    padding: 8px !important;
+    font-size: 14px !important;
+    border-radius: 4px !important;
+  }
+
+  /* Status and info bar */
+  .status-bar {
+    padding: 8px !important;
+    font-size: 12px !important;
+    text-align: center !important;
+    margin-bottom: 12px !important;
+    background: #2a2a2a !important;
+    color: #ffffff !important;
+    border-radius: 4px !important;
+  }
+
+  /* Main content layout - stack vertically on mobile */
+  .main-content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    height: auto !important;
+  }
+
+  /* Table container mobile optimization */
+  .table-container {
+    width: 100% !important;
+    flex: none !important;
+    order: 1 !important;
+  }
+
+  .table-wrapper {
+    height: 60vh !important;
+    overflow: auto !important;
+    background: #1a1a1a !important;
+    border: 1px solid #444 !important;
+    border-radius: 4px !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  /* Table mobile styles */
+  table {
+    width: 100% !important;
+    min-width: 800px !important; /* Ensure table doesn't get too cramped */
+    border-collapse: collapse !important;
+    font-size: 12px !important;
+  }
+
+  /* Table header mobile optimization */
+  thead th {
+    position: sticky !important;
+    top: 0 !important;
+    background: #2a2a2a !important;
+    color: #ffffff !important;
+    z-index: 10 !important;
+    padding: 8px 4px !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    border-bottom: 2px solid #444 !important;
+    white-space: nowrap !important;
+  }
+
+  /* Table cell mobile styles */
+  tbody td {
+    padding: 6px 4px !important;
+    font-size: 11px !important;
+    vertical-align: top !important;
+    background: #1a1a1a !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid #333 !important;
+    word-wrap: break-word !important;
+  }
+
+  /* Specific column adjustments for mobile */
+  .select-column {
+    width: 40px !important;
+    text-align: center !important;
+  }
+
+  .date-column {
+    width: 80px !important;
+    font-size: 10px !important;
+  }
+
+  .title-column {
+    max-width: 200px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  .category-column {
+    width: 80px !important;
+    font-size: 10px !important;
+  }
+
+  .status-column {
+    width: 60px !important;
+    font-size: 10px !important;
+  }
+
+  .liquidity-column {
+    width: 70px !important;
+    font-size: 10px !important;
+  }
+
+  .outcomes-column {
+    max-width: 180px !important;
+    font-size: 10px !important;
+  }
+
+  .rain-column {
+    width: 50px !important;
+    text-align: center !important;
+  }
+
+  /* Hide JSON Preview on mobile */
+  .json-container {
+    display: none !important;
+  }
+
+  /* Mobile wallet header positioning fix */
+  .wallet-header {
+    position: fixed !important;
+    top: 5px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    right: auto !important;
+    z-index: 10001 !important;
+    max-width: calc(100vw - 20px) !important;
+    font-size: 11px !important;
+    padding: 4px 8px !important;
+    border-radius: 6px !important;
+  }
+
+  .wallet-header span {
+    font-size: 10px !important;
+  }
+
+  .wallet-header button {
+    padding: 2px 4px !important;
+    font-size: 9px !important;
+    margin-left: 4px !important;
+    border-radius: 3px !important;
+  }
+
+  .wallet-header div {
+    gap: 4px !important;
+  }
+
+  /* Adjust main container to account for wallet header */
+  .main-container {
+    padding-top: 40px !important;
+  }
+
+  /* App header with logo - mobile styles */
+  .app-header {
+    margin-top: 25px !important;
+    gap: 8px !important;
+  }
+
+  .app-logo {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .app-header h1 {
+    font-size: 18px !important;
+    margin: 0 !important;
+    color: rgba(222, 255, 78, 59) !important;
+    font-family: "IBM Plex Mono", "Courier New", monospace !important;
+  }
+
+  /* Ensure tabs are not hidden and have proper spacing */
+  .tab-container {
+    margin-top: 15px !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  /* Login page logo - mobile responsive */
+  .wallet-connect-container {
+    max-width: 280px !important;
+    padding: 24px !important;
+  }
+
+  .wallet-connect-container img {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  .wallet-connect-container h1 {
+    font-size: 24px !important;
+    font-family: "IBM Plex Mono", "Courier New", monospace !important;
+  }
+
+  .wallet-connect-container div {
+    gap: 12px !important;
+    margin-bottom: 24px !important;
+  }
+
+  .export-button {
+    width: 100% !important;
+    padding: 12px !important;
+    font-size: 14px !important;
+    margin-bottom: 8px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .json-preview {
+    flex: 1 !important;
+    border: 1px solid #444 !important;
+    border-radius: 4px !important;
+    background: #1a1a1a !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .json-header {
+    padding: 8px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    background: #2a2a2a !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid #444 !important;
+    flex-shrink: 0 !important;
+  }
+
+  .json-content {
+    flex: 1 !important;
+    overflow: auto !important;
+    padding: 8px !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .json-content pre {
+    font-size: 10px !important;
+    line-height: 1.3 !important;
+    margin: 0 !important;
+    word-wrap: break-word !important;
+    white-space: pre-wrap !important;
+  }
+
+  /* Form elements mobile optimization */
+  input[type="text"],
+  input[type="number"],
+  select {
+    width: 100% !important;
+    padding: 10px !important;
+    font-size: 16px !important; /* Prevent zoom on iOS */
+    background: #1a1a1a !important;
+    color: #ffffff !important;
+    border: 1px solid #555 !important;
+    border-radius: 4px !important;
+    -webkit-appearance: none !important;
+  }
+
+  input[type="checkbox"] {
+    width: 18px !important;
+    height: 18px !important;
+    margin: 0 !important;
+  }
+
+  /* Button mobile styles */
+  button {
+    padding: 12px 16px !important;
+    font-size: 14px !important;
+    border-radius: 6px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    min-height: 44px !important; /* iOS touch target size */
+  }
+
+  /* Touch-friendly hover states */
+  .clickable {
+    min-height: 44px !important;
+    min-width: 44px !important;
+  }
+
+  /* Sorting arrows mobile optimization */
+  .sort-arrow {
+    font-size: 14px !important;
+    margin-left: 4px !important;
+  }
+
+  /* Loading and error states */
+  .loading,
+  .error {
+    text-align: center !important;
+    padding: 20px !important;
+    font-size: 14px !important;
+  }
+
+  /* Responsive text sizing */
+  .responsive-text {
+    font-size: clamp(10px, 2.5vw, 14px) !important;
+  }
+
+  /* Very small screens - keep all columns but make them smaller */
+  @media (max-width: 480px) {
+    table {
+      min-width: 700px !important;
+    }
+
+    .title-column {
+      max-width: 120px !important;
+    }
+
+    .outcomes-column {
+      max-width: 100px !important;
+    }
+
+    .category-column {
+      width: 60px !important;
+    }
+
+    .status-column {
+      width: 50px !important;
+    }
+  }
+
+  /* Landscape orientation optimizations */
+  @media (max-width: 768px) and (orientation: landscape) {
+    .main-content {
+      flex-direction: row !important;
+    }
+
+    .table-container {
+      flex: 1 !important;
+    }
+
+    .json-container {
+      width: 300px !important;
+      flex: none !important;
+    }
+
+    .table-wrapper {
+      height: 50vh !important;
+    }
+  }
+}
+
+/* Tablet styles (768px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .main-container {
+    padding: 16px !important;
+  }
+
+  .main-content {
+    height: 70vh !important;
+  }
+
+  .table-wrapper {
+    height: 100% !important;
+  }
+
+  table {
+    font-size: 13px !important;
+  }
+
+  thead th {
+    padding: 10px 6px !important;
+    font-size: 12px !important;
+  }
+
+  tbody td {
+    padding: 8px 6px !important;
+    font-size: 12px !important;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  table,
+  th,
+  td {
+    border: 2px solid !important;
+  }
+
+  .sort-arrow {
+    font-weight: bold !important;
+  }
+}
+
+/* Enhanced Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .table-wrapper {
+    background: #1a1a1a !important;
+    border-color: #444 !important;
+  }
+
+  thead th {
+    background: #2a2a2a !important;
+    color: #fff !important;
+    border-color: #444 !important;
+  }
+
+  tbody td {
+    background: #1a1a1a !important;
+    color: #fff !important;
+    border-color: #333 !important;
+  }
+
+  .json-preview {
+    background: #1a1a1a !important;
+    border-color: #444 !important;
+  }
+
+  .json-header {
+    background: #2a2a2a !important;
+    color: #fff !important;
+  }
+
+  body {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+  }
+}
+
+/* Wallet Modal Z-Index Fix */
+w3m-modal,
+appkit-modal,
+[data-testid="w3m-modal"],
+.w3m-modal,
+.appkit-modal {
+  z-index: 999999 !important;
+}
+
+w3m-modal *,
+appkit-modal *,
+[data-testid="w3m-modal"] *,
+.w3m-modal *,
+.appkit-modal * {
+  z-index: inherit !important;
+}
+
+/* Override any conflicting z-index */
+.w3m-overlay,
+.appkit-overlay {
+  z-index: 999998 !important;
+}
+
+/* Hide unwanted elements in wallet modal */
+w3m-modal [data-testid="w3m-connecting-header"],
+w3m-modal .w3m-connecting-header,
+w3m-modal .w3m-header-title,
+w3m-modal .w3m-info-footer,
+w3m-modal .w3m-legal-notice,
+w3m-modal .w3m-all-wallets-search,
+w3m-modal .w3m-wallet-image,
+appkit-modal [data-testid="w3m-connecting-header"],
+appkit-modal .w3m-connecting-header,
+appkit-modal .w3m-header-title,
+appkit-modal .w3m-info-footer,
+appkit-modal .w3m-legal-notice,
+appkit-modal .w3m-all-wallets-search,
+appkit-modal .w3m-wallet-image {
+  display: none !important;
+}
+
+/* Simplify modal content */
+w3m-modal .w3m-modal-content,
+appkit-modal .w3m-modal-content {
+  background-color: #1a1a1a !important;
+  border: 1px solid #444 !important;
+}
+
+/* Style wallet buttons */
+w3m-modal .w3m-wallet-button,
+appkit-modal .w3m-wallet-button {
+  background-color: #2a2a2a !important;
+  border: 1px solid #444 !important;
+  color: #ffffff !important;
+}
+
+w3m-modal .w3m-wallet-button:hover,
+appkit-modal .w3m-wallet-button:hover {
+  background-color: #3a3a3a !important;
+}
+
+/* Custom slider thumb styling */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+  background: rgba(220, 236, 78, 1) !important;
+  border: 1px solid #444 !important;
+  cursor: pointer !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+  background: rgba(220, 236, 78, 1) !important;
+  border: 1px solid #444 !important;
+  cursor: pointer !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+  appearance: none !important;
+  -moz-appearance: none !important;
+}
+
+input[type="range"]::-ms-thumb {
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+  background: rgba(220, 236, 78, 1) !important;
+  border: 1px solid #444 !important;
+  cursor: pointer !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
