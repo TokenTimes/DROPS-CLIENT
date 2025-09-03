@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🚀 Building Polymarket Scanner Next.js Client for Render..."
+echo "🚀 Building DROPS Next.js Client for Render..."
 
 # Install dependencies
 echo "📦 Installing dependencies..."
