@@ -129,7 +129,7 @@ export function WalletConnect() {
 
         @keyframes float {
           0% {
-            transform: translateY(0px) rotate(0deg);
+            transform: translateY(-100px) rotate(0deg);
             opacity: 0;
           }
           10% {
@@ -139,7 +139,7 @@ export function WalletConnect() {
             opacity: 1;
           }
           100% {
-            transform: translateY(-100px) rotate(360deg);
+            transform: translateY(100vh) rotate(360deg);
             opacity: 0;
           }
         }
@@ -261,8 +261,8 @@ export function WalletConnect() {
               key={i}
               style={{
                 position: "absolute",
-                width: "2px",
-                height: "2px",
+                width: "4px",
+                height: "4px",
                 backgroundColor: "rgba(222, 255, 78, 0.3)",
                 borderRadius: "50%",
                 animation: `float ${3 + (i % 3)}s infinite linear`,
